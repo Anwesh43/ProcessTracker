@@ -21,3 +21,5 @@
 ```
     processTracker.show()
 ```
+![Alt text](https://github.com/Anwesh43/ProcessTracker/blob/master/screenshots/incompleted_processes.png "Incompleted Process")
+![Alt text](https://github.com/Anwesh43/ProcessTracker/blob/master/screenshots/completed_processes.png "Completed Process")
