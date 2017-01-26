@@ -16,10 +16,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        ProcessTracker processTracker = new ProcessTracker(this);
+        final ProcessTracker processTracker = new ProcessTracker(this);
         processTracker.addProcess(new TrackProcess(BitmapFactory.decodeResource(getResources(),R.drawable.order),"Order Confirmed"));
         processTracker.addProcess(new TrackProcess(BitmapFactory.decodeResource(getResources(),R.drawable.onway),"On The Way"));
         processTracker.addProcess(new TrackProcess(BitmapFactory.decodeResource(getResources(),R.drawable.delivered),"Delivered"));
         processTracker.show();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int i=0;
+                while(i<3) {
+                    try {
+                        Thread.sleep(5000);
+                    }
+                    catch (Exception ex) {
+
+                    }
+                    final int index = i;
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            processTracker.completeProcess(index);
+                        }
+                    });
+                    i++;
+                }
+            }
+        }).start();
     }
 }
