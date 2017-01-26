@@ -1,9 +1,7 @@
 package com.anwesome.camera.processtracker;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.graphics.*;
 
 /**
  * Created by anweshmishra on 26/01/17.
@@ -28,6 +26,11 @@ public class TrackProcess {
         if(bitmap!=null) {
             bitmap = Bitmap.createScaledBitmap(bitmap, r, r, true);
             canvas.drawBitmap(bitmap, x + r / 2, y - r / 2, paint);
+        }
+        if(phase!=null) {
+            paint.setColor(Color.WHITE);
+            paint.setTextSize(canvas.getHeight()/12);
+            canvas.drawText(phase,x+r-paint.measureText(phase)/2,y+r+r/3,paint);
         }
     }
     public void setComplete(boolean complete) {
