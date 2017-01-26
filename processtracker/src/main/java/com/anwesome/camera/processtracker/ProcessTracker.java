@@ -63,11 +63,12 @@ public class ProcessTracker {
             super(context);
         }
         public void onDraw(Canvas canvas) {
+            paint.setStrokeWidth(paint.getStrokeWidth()+5);
             canvas.drawColor(Color.parseColor("#BDBDBD"));
-            int prev_x=0,x = 0, y= canvas.getHeight()/2;
+            int prev_x=canvas.getWidth()/20,x = canvas.getWidth()/20, y= canvas.getHeight()/2;
             int r = canvas.getHeight()/4,line_gap = 0;
             if(trackProcesses.size()>1) {
-                line_gap = (canvas.getWidth()-(2*r*trackProcesses.size()))/(trackProcesses.size()-1);
+                line_gap = ((canvas.getWidth()*9)/10-(2*r*trackProcesses.size()))/(trackProcesses.size()-1);
             }
             int lineColor = Color.WHITE;
 
