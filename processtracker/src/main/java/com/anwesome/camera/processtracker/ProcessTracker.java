@@ -82,6 +82,9 @@ public class ProcessTracker {
                 if(trackProcess.isComplete()) {
                     lineColor = color;
                 }
+                else {
+                    lineColor = Color.WHITE;
+                }
             }
         }
     }

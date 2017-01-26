@@ -30,6 +30,7 @@ public class TrackProcess {
         if(phase!=null) {
             paint.setColor(Color.WHITE);
             paint.setTextSize(canvas.getHeight()/12);
+            paint.setStyle(Paint.Style.FILL);
             canvas.drawText(phase,x+r-paint.measureText(phase)/2,y+r+r/3,paint);
         }
     }
