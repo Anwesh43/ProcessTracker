@@ -19,28 +19,13 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         final ProcessTracker processTracker = new ProcessTracker(this);
         TrackProcess trackProcess = new TrackProcess(BitmapFactory.decodeResource(getResources(),R.drawable.order),"Order Confirmed");
-        trackProcess.setTrackProcessCompletionListener(new TrackProcess.TrackProcessCompletionListener() {
-            @Override
-            public void onComplete() {
-                Toast.makeText(MainActivity.this,"Order Confirmed",Toast.LENGTH_SHORT).show();
-            }
-        });
+        showToastOnProcessComplete(trackProcess,"Order Confirmed");
         processTracker.addProcess(trackProcess);
         TrackProcess trackProcess1 = new TrackProcess(BitmapFactory.decodeResource(getResources(),R.drawable.onway),"On The Way");
-        trackProcess1.setTrackProcessCompletionListener(new TrackProcess.TrackProcessCompletionListener() {
-            @Override
-            public void onComplete() {
-                Toast.makeText(MainActivity.this,"On the way",Toast.LENGTH_SHORT).show();
-            }
-        });
+        showToastOnProcessComplete(trackProcess1,"On the way");
         processTracker.addProcess(trackProcess1);
         TrackProcess trackProcess2 = new TrackProcess(BitmapFactory.decodeResource(getResources(),R.drawable.delivered),"Delivered");
-        trackProcess2.setTrackProcessCompletionListener(new TrackProcess.TrackProcessCompletionListener() {
-            @Override
-            public void onComplete() {
-                Toast.makeText(MainActivity.this,"Delivered",Toast.LENGTH_SHORT).show();
-            }
-        });
+        showToastOnProcessComplete(trackProcess2,"Delivered");
         processTracker.addProcess(trackProcess2);
         processTracker.show();
         new Thread(new Runnable() {
@@ -65,5 +50,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }).start();
+    }
+    private void showToastOnProcessComplete(TrackProcess trackProcess,final String text) {
+        trackProcess.setTrackProcessCompletionListener(new TrackProcess.TrackProcessCompletionListener() {
+            @Override
+            public void onComplete() {
+                Toast.makeText(MainActivity.this,text,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
