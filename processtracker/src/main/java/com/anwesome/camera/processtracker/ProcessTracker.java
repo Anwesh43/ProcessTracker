@@ -42,6 +42,10 @@ public class ProcessTracker {
     public void completeProcess(int index) {
         if(index<trackProcesses.size()) {
             trackProcesses.get(index).setComplete(true);
+            TrackProcess.TrackProcessCompletionListener trackProcessCompletionListener = trackProcesses.get(index).getTrackProcessCompletionListener();
+            if(trackProcessCompletionListener!=null) {
+                trackProcesses.get(index).getTrackProcessCompletionListener().onComplete();
+            }
             processTrackerView.invalidate();
         }
 
