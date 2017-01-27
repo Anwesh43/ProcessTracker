@@ -10,8 +10,17 @@ public class TrackProcess {
     private boolean complete = false;
     private Bitmap bitmap;
     private String phase;
-    
-    public TrackProcess(Bitmap bitmap,String phase) {
+    private TrackProcessCompletionListener trackProcessCompletionListener;
+
+    public TrackProcessCompletionListener getTrackProcessCompletionListener() {
+        return trackProcessCompletionListener;
+    }
+
+    public void setTrackProcessCompletionListener(TrackProcessCompletionListener trackProcessCompletionListener) {
+        this.trackProcessCompletionListener = trackProcessCompletionListener;
+    }
+
+    public TrackProcess(Bitmap bitmap, String phase) {
         this.bitmap = bitmap;
         this.phase = phase;
     }
@@ -45,5 +54,8 @@ public class TrackProcess {
     }
     public int hashCode() {
         return bitmap.hashCode()+phase.hashCode()+(complete?1:0);
+    }
+    public interface TrackProcessCompletionListener {
+        void onComplete();
     }
 }
